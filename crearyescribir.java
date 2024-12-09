@@ -3,7 +3,7 @@ package examen;
 import java.io.File;
 import java.io.FileWriter;
 
-public class practica {
+public class crearyescribir {
 	
 	public static void escribirArchivo(String archivo){
 		File archivoW = new File(archivo);
