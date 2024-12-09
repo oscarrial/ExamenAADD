@@ -71,4 +71,18 @@ public class GestionFicheros {
             System.out.println("Error al leer el fichero.");
         }
     }
+	public static void main(String[] args) {
+			
+			//String archivo = "alter.txt";
+			//crearArchivo(archivo);
+			
+			//String archivo = "C:\\Users\\Aussar\\Documents\\Downloads\\alter.txt";
+			//File archivoM = new File(archivo);
+			//mostrar(archivoM);
+			
+			//File archivoSeleccionado = seleccionFichero("Archivos de texto", "txt");
+			
+			File archivoSeleccionado = seleccionFichero();
+
+		}
 }

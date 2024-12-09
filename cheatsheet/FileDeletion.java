@@ -16,4 +16,21 @@ public class FileDeletion {
         }
         return directorio.delete(); // Intenta eliminar el directorio
     }
+    
+    public static void main(String[] args) {
+        // Ruta del directorio que deseas eliminar
+        String rutaDirectorio = "C:\\Users\\Aussar\\Documents\\Downloads\\borrar";
+
+        // Crear un objeto File para el directorio
+        File directorio = new File(rutaDirectorio);
+
+        // Llamar al método borrarCarpeta
+        boolean exito = FileDeletion.borrarCarpeta(directorio);
+        
+        if (exito) {
+            System.out.println("El directorio y su contenido fueron eliminados correctamente.");
+        } else {
+            System.out.println("Hubo un problema al intentar eliminar el directorio.");
+        }
+    }
 }

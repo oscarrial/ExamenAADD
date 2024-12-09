@@ -5,6 +5,8 @@ import javax.swing.table.DefaultTableModel;
 import java.io.*;
 
 public class CSVUtils {
+	
+	
     // Selecciona un archivo CSV.
     public static File seleccionFicheroCSV() {
         JFileChooser jfc = new JFileChooser();
@@ -38,12 +40,18 @@ public class CSVUtils {
 
     // Carga un archivo CSV en un JTable.
     public static void cargarCSVEnTabla(JTable table) {
-        JFileChooser jfc = new JFileChooser();
-        jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    	
+    	// Llamar al método seleccionFicheroCSV para obtener el archivo CSV
+        File fichero = seleccionFicheroCSV();
+    	
+        // PARA SELECIONAR CUALQUIER ARCHIVO
+        //JFileChooser jfc = new JFileChooser();
+        //jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
-        int seleccion = jfc.showOpenDialog(null);
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            File fichero = jfc.getSelectedFile();
+        //int seleccion = jfc.showOpenDialog(null);
+        //if (seleccion == JFileChooser.APPROVE_OPTION) {
+            //File fichero = jfc.getSelectedFile();
+        
             if (fichero.getName().endsWith(".csv")) {
                 try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
                     String line;
@@ -60,5 +68,59 @@ public class CSVUtils {
                 JOptionPane.showMessageDialog(null, "Seleccione un archivo CSV.");
             }
         }
+    
+    
+    public static void main(String[] args) {
+    
+        // Llamar al método seleccionFicheroCSV
+        File archivoCSV = seleccionFicheroCSV();
+
+        // Verificar si se seleccionó un archivo
+        if (archivoCSV != null) {
+            System.out.println("Archivo CSV seleccionado: " + archivoCSV.getAbsolutePath());
+        } else {
+            System.out.println("No se seleccionó ningún archivo.");
+        }
+        
+        // Añadir una linea a un archivo .csv
+        String linea = "fdfs";
+        
+        //Verificar que la linea se añadió
+        if (archivoCSV != null) {
+            boolean exito = anhadirLineaCSV(archivoCSV, linea);
+            if (exito) {
+                System.out.println("La línea se ha añadido correctamente.");
+            } else {
+                System.out.println("No se pudo añadir la línea.");
+            }
+        } else {
+            System.out.println("No se seleccionó un archivo CSV.");
+        }
+        
+        // Cargar csv en tabla 
+        
+        // Crear la ventana principal (JFrame)
+        JFrame frame = new JFrame("Cargar CSV en Tabla");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Crear un modelo de tabla con nombres de columnas
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Columna 1");
+        model.addColumn("Columna 2");
+        model.addColumn("Columna 3");
+
+        // Crear la tabla y asignarle el modelo
+        JTable table = new JTable(model);
+        
+        // Agregar la tabla a un JScrollPane
+        JScrollPane scrollPane = new JScrollPane(table);
+        frame.add(scrollPane);
+
+        // Configurar el tamaño de la ventana
+        frame.setSize(500, 300);
+        frame.setVisible(true);
+
+        // Llamar al método cargarCSVEnTabla para cargar datos en la tabla
+        CSVUtils.cargarCSVEnTabla(table);
     }
 }
