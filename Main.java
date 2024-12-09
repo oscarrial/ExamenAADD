@@ -1,0 +1,1 @@
+public class Main {    public static void main(String[] args) {        // Inicializamos la interfaz de conexión        javax.swing.SwingUtilities.invokeLater(new Runnable() {            @Override            public void run() {                new DBConnectionPanel().setVisible(true);            }        });    }}

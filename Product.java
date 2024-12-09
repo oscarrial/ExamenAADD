@@ -1,0 +1,1 @@
+public class Product {    private String name;    private int categoryId;    private int supplierId;    private String quantityPerUnit;    private double unitPrice;    private int unitsInStock;    private int unitsOnOrder;    private int reorderLevel;    private boolean discontinued;    // Constructor, getters y setters aquí}
